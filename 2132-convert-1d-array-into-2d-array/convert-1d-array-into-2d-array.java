@@ -5,7 +5,7 @@ class Solution {
             return new int[0][0];
         }
         int ans[][] = new int[m][n];
-        int k = 0;
+        
         for (int i=0; i<l; i++) {
             ans[i / n][i % n] = original[i];
         }
