@@ -11,8 +11,11 @@ class Solution {
             if(s[j] >= g[i]){
                 c++;
                 i++;
+                j++;
             }
-            j++;
+            else{
+                j++;
+            }
         }
         return c;
     }
