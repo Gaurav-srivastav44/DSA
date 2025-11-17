@@ -1,11 +1,12 @@
 class Solution {
     public int countSubIslands(int[][] grid1,int[][] grid2){
-        int m=grid2.length,n=grid2[0].length;
+        int m=grid2.length;
+        int n=grid2[0].length;
         int count=0;
 
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(grid2[i][j]==1){
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(grid2[i][j] == 1){
                     if(dfs(grid1,grid2,i,j)) count++;
                 }
             }
@@ -17,14 +18,14 @@ class Solution {
         if(i<0||j<0||i>=g2.length||j>=g2[0].length||g2[i][j]==0)
             return true;
 
-        boolean isSub=g1[i][j]==1;
+        boolean check = g1[i][j]==1;
         g2[i][j]=0;
 
-        boolean up=dfs(g1,g2,i-1,j);
-        boolean down=dfs(g1,g2,i+1,j);
-        boolean left=dfs(g1,g2,i,j-1);
-        boolean right=dfs(g1,g2,i,j+1);
+        check = check & dfs(g1,g2,i-1,j);
+        check = check & dfs(g1,g2,i+1,j);
+        check = check & dfs(g1,g2,i,j-1);
+        check = check & dfs(g1,g2,i,j+1);
 
-        return isSub&&up&&down&&left&&right;
+        return check;
     }
 }
