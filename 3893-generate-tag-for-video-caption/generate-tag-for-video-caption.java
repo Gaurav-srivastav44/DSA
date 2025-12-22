@@ -5,12 +5,13 @@ class Solution {
 
         if (words.length == 0) return "#";
 
-        for (int i = 0; i < words.length; i++) {
+        for (int i=0; i<words.length; i++) {
             String w = words[i].toLowerCase();
 
-            if (i == 0) {
+            if (i==0) {
                 sb.append(w);
-            } else {
+            }
+            else {
                 sb.append(Character.toUpperCase(w.charAt(0)));
                 if (w.length() > 1)
                     sb.append(w.substring(1));
