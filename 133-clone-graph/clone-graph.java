@@ -22,20 +22,20 @@ class Solution {
     public Node cloneGraph(Node node) {
         if(node == null)return null;
         HashMap<Node, Node> map = new HashMap<>();
-        return dfs(node, map);
+        return dfs(node,map);
+
     }
-    public Node dfs(Node node, Map<Node, Node> map){
+    public Node dfs(Node node, Map<Node, Node>map){
         if(map.containsKey(node)){
             return map.get(node);
         }
 
         Node copy = new Node(node.val);
-        map.put(node, copy);
+        map.put(node,copy);
 
         for(Node i : node.neighbors){
             copy.neighbors.add(dfs(i,map));
         }
-
         return copy;
     }
 }
