@@ -1,36 +1,30 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        return solve(0, s);
+        List<List<String>> ans = new ArrayList<>();
+        List<String> temp = new ArrayList<>();
+        helper(ans, temp, s, 0);
+        return ans;
     }
 
-    public List<List<String>> solve(int i, String s) {
-        List<List<String>> res = new ArrayList<>();
-
-        if (i == s.length()) {
-            res.add(new ArrayList<>());
-            return res;
+    public void helper(List<List<String>> ans, List<String> temp, String s, int idx){
+        if(idx == s.length()){
+            ans.add(new ArrayList<>(temp));
+            return;
         }
 
-        for (int end = i; end < s.length(); end++) {
-            if (isPalindrome(s, i, end)) {
-                String part = s.substring(i, end+1);
-
-                List<List<String>> sub = solve(end+1, s);
-                for (List<String> l : sub) {
-                    List<String> curr = new ArrayList<>();
-                    curr.add(part);
-                    curr.addAll(l);
-                    res.add(curr);
-                }
+        for(int i=idx; i<s.length(); i++){
+            if(isPall(s,idx,i)){
+                temp.add(s.substring(idx,i+1));
+                helper(ans, temp, s, i+1);
+                temp.remove(temp.size()-1);
             }
         }
-        return res;
     }
-
-    boolean isPalindrome(String s, int l, int r) {
-        while (l < r) {
-            if (s.charAt(l) != s.charAt(r)) return false;
-            l++; r--;
+    public boolean isPall(String s, int i, int j){
+        while(i<=j){
+            if(s.charAt(i) != s.charAt(j))return false;
+            i++;
+            j--;
         }
         return true;
     }
