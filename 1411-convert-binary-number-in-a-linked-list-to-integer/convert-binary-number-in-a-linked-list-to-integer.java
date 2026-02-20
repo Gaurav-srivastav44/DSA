@@ -8,19 +8,13 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-import java.math.BigInteger;
 class Solution {
     public int getDecimalValue(ListNode head) {
-        StringBuilder sb = new StringBuilder();
-
-        ListNode curr = head;
-        while(curr != null){
-            sb.append(curr.val);
-            curr = curr.next;
+        int result =0;
+        while(head != null){
+            result = result *2 + head.val;
+            head = head.next;
         }
-
-        BigInteger a = new BigInteger(sb.toString(), 2);
-        return a.intValue();
-
+        return result;
     }
 }
