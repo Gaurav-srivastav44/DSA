@@ -3,35 +3,16 @@ class Solution {
         int n = nums.length;
         int[] ans = new int[n];
 
-        int c=0;
-        int prod=1;
-        int idx=-1;
-
-        for(int i=0; i<n; i++){
-            if(nums[i]==0){
-                c++;
-                idx = i;
-            }
-            else{
-                prod *= nums[i];
-            }
+        ans[0]=1;
+        for(int i=1; i<n; i++){
+            ans[i] = ans[i-1] * nums[i-1];
         }
-
-        if(c>1){
-            Arrays.fill(ans,0);
-            return ans;
-        }
-
-        else if(c==1){
-            Arrays.fill(ans,0);
-            ans[idx]=prod;
-            return ans;
-        }
-
-        for(int i=0; i<n; i++){
-            ans[i] = prod/nums[i];
+        
+        int suff=1;
+        for(int i=n-1; i>=0; i--){
+            ans[i] *= suff;
+            suff *= nums[i];
         }
         return ans;
-
     }
 }
