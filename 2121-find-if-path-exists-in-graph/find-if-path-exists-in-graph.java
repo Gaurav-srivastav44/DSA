@@ -9,19 +9,22 @@ class Solution {
             adj.get(i[1]).add(i[0]);
         }
         boolean[] vis = new boolean[n];
-        return dfs(vis, adj, source, destination);
-    }
+        Queue<Integer> q = new LinkedList<>();
+        vis[source] = true;
+        q.add(source);
 
-    public boolean dfs(boolean[] vis, ArrayList<ArrayList<Integer>> adj, int src, int des){
-        if(src == des)return true;
-        vis[src] = true;
-
-        for(int i : adj.get(src)){
-            if(!vis[i] && dfs(vis, adj, i, des)){
-                return true;
+        while(!q.isEmpty()){
+            int curr = q.poll();
+            for(int i : adj.get(curr)){
+                if(!vis[i]){
+                    if(i == destination)return true;
+                    vis[i] = true;
+                    q.add(i);
+                }
             }
         }
         return false;
-
     }
+
+    
 }
