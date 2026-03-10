@@ -13,6 +13,7 @@ class Solution {
             }
             map.get(key).add(s);
         }
+        //isme har string par iterate kar rahe hai use sort karke check kar rahe hai pehle aa chuki hogi to uski value(jo ki arraylist hai) usme add kar denge
 
         List<List<String>> ans = new ArrayList<>(map.values());
         return ans;
