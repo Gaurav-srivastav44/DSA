@@ -9,25 +9,23 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(p== root || q== root)return root;
-        if(p==q)return p;
+        if(p==root || q==root)return root;
 
-        boolean leftp = contains(root.left,p);
-        boolean rightq = contains(root.right,q);
+        boolean lp = contains(root.left, p);
+        boolean lq = contains(root.left, q);
+        boolean rq = contains(root.right, q);
+        boolean rp = contains(root.right, p);
 
-        if(leftp && rightq || (!leftp && !rightq))return root;
-        if(!leftp && rightq){
-            return(lowestCommonAncestor(root.right, p, q));
-        }
-        if(leftp && !rightq){
-            return(lowestCommonAncestor(root.left, p, q));
-        }
+        if((lp && rq) || (lq && rp))return root;
+
+        if(lp && lq)return lowestCommonAncestor(root.left, p, q);
+        if(rp && rq)return lowestCommonAncestor(root.right, p, q);
         return root;
     }
-    public boolean contains(TreeNode root, TreeNode p){
+    public boolean contains(TreeNode root, TreeNode x){
         if(root == null)return false;
-        if(root == p)return true;
+        if(root == x)return true;
 
-        return contains(root.left,p) || contains(root.right,p);
+        return contains(root.left, x)|| contains(root.right, x);
     }
 }
